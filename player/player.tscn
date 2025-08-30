@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbifjdc5k4gag"]
+
+[ext_resource type="Script" uid="uid://c24ngaugu3cga" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c2oh61ye8cahq" path="res://art_test/gordito 2.png" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kparq"]
+size = Vector2(62, 86)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nxt0l"]
+animations = []
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+size = Vector2(134, 45)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kparq")
+debug_color = Color(0.818396, 0.375739, 0.404485, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nxt0l")
+animation = &""
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -7)
+scale = Vector2(0.330179, 0.327232)
+texture = ExtResource("2_i3pqv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(102, 4.5)
+shape = SubResource("RectangleShape2D_rkbax")
+debug_color = Color(0.916389, 0.278261, 0.18966, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

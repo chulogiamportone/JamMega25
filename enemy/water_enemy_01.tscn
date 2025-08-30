@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://du0rgw56t2d45"]
+
+[ext_resource type="Texture2D" uid="uid://bmb8d8tbeutg0" path="res://art_test/klipartz.com.png" id="1_dacle"]
+[ext_resource type="Script" uid="uid://bi3ws2t3dvxbe" path="res://enemy/water_enemy_01.gd" id="1_dsps1"]
+[ext_resource type="Shader" uid="uid://duw3k24l16x3a" path="res://water_distorsion/Main.gdshader" id="2_di64q"]
+[ext_resource type="Script" path="res://water_distorsion/sprite_2d2.gd" id="2_ten8u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_knipj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks5cp"]
+shader = ExtResource("2_di64q")
+shader_parameter/is_cut = false
+shader_parameter/cut_progress = 0.0
+shader_parameter/cut_softness = 0.05
+shader_parameter/water_flow_strength = 0.03
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_knipj")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ten8u"]
+radius = 31.0161
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ten8u"]
+size = Vector2(45, 23)
+
+[node name="WaterEnemy01" type="RigidBody2D"]
+script = ExtResource("1_dsps1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ks5cp")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_dacle")
+script = ExtResource("2_ten8u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_ten8u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 26.5)
+shape = SubResource("RectangleShape2D_ten8u")
