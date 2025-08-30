@@ -15,7 +15,8 @@ var timer: Timer
 func _ready() -> void:
 	# Crear el material con shader
 	shader_material = material as ShaderMaterial
-	
+	shader_material = shader_material.duplicate()
+	material = shader_material
 	# Configurar timer
 	timer = Timer.new()
 	timer.one_shot = true

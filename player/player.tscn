@@ -23,8 +23,6 @@ debug_color = Color(0.818396, 0.375739, 0.404485, 0.42)
 sprite_frames = SubResource("SpriteFrames_nxt0l")
 animation = &""
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -7)
 scale = Vector2(0.330179, 0.327232)
@@ -36,6 +34,12 @@ texture = ExtResource("2_i3pqv")
 position = Vector2(102, 4.5)
 shape = SubResource("RectangleShape2D_rkbax")
 debug_color = Color(0.916389, 0.278261, 0.18966, 0.42)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -70.0
+offset_right = 25.0
+offset_bottom = -47.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
