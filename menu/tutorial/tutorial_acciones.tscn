@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://cegkiocvaydkk"]
+
+[ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_tgumb"]
+[ext_resource type="Texture2D" uid="uid://bdfslqbmkitaw" path="res://menu/keyboard/Tiles (White)/tile_0126.png" id="2_qmfdl"]
+[ext_resource type="Texture2D" uid="uid://brlyw7ae144im" path="res://menu/keyboard/Tiles (White)/tile_0127.png" id="3_aeg3h"]
+[ext_resource type="Texture2D" uid="uid://dwf6pe58rud85" path="res://menu/keyboard/Tiles (White)/tile_0128.png" id="4_ueyvc"]
+[ext_resource type="Texture2D" uid="uid://4aegh8b50smg" path="res://menu/keyboard/Tiles (White)/tile_0092.png" id="5_s2pf7"]
+
+[sub_resource type="Theme" id="Theme_ujvbu"]
+default_font = ExtResource("1_tgumb")
+
+[node name="TutorialAcciones" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ujvbu")
+text = "Golpe:"
+
+[node name="J" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_qmfdl")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_ujvbu")
+text = "Absorber:"
+
+[node name="K" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_aeg3h")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = SubResource("Theme_ujvbu")
+text = "Jetpack:"
+
+[node name="L" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_ueyvc")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = SubResource("Theme_ujvbu")
+text = "Dash:"
+
+[node name="I" type="TextureRect" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("5_s2pf7")
