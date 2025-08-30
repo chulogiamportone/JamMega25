@@ -1,16 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbifjdc5k4gag"]
+[gd_scene load_steps=7 format=3 uid="uid://dbifjdc5k4gag"]
 
 [ext_resource type="Script" uid="uid://c24ngaugu3cga" path="res://player/player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://c2oh61ye8cahq" path="res://art_test/gordito 2.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cscqlj02pmbe8" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA1.png" id="2_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://b5faokfdiup5p" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA2.png" id="3_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kparq"]
-size = Vector2(62, 86)
+size = Vector2(16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nxt0l"]
-animations = []
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g1dw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yw30f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
-size = Vector2(134, 45)
+size = Vector2(33, 11.75)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
@@ -21,17 +33,15 @@ debug_color = Color(0.818396, 0.375739, 0.404485, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nxt0l")
-animation = &""
+animation = &"walk"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -7)
-scale = Vector2(0.330179, 0.327232)
-texture = ExtResource("2_i3pqv")
+texture = ExtResource("2_g1dw6")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(102, 4.5)
+position = Vector2(25.5, -0.125)
 shape = SubResource("RectangleShape2D_rkbax")
 debug_color = Color(0.916389, 0.278261, 0.18966, 0.42)
 
