@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbifjdc5k4gag"]
+[gd_scene load_steps=9 format=3 uid="uid://dbifjdc5k4gag"]
 
 [ext_resource type="Script" uid="uid://c24ngaugu3cga" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cscqlj02pmbe8" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA1.png" id="2_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://b5faokfdiup5p" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA2.png" id="3_yw30f"]
+[ext_resource type="Texture2D" uid="uid://crt8t7oes1dvi" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA3.png" id="4_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://dbthakpkuu5d3" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA4.png" id="5_g6k8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kparq"]
 size = Vector2(16, 32)
@@ -10,15 +12,24 @@ size = Vector2(16, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_nxt0l"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.9,
 "texture": ExtResource("2_g1dw6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_yw30f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qjkh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g6k8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g1dw6")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
@@ -34,6 +45,8 @@ debug_color = Color(0.818396, 0.375739, 0.404485, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nxt0l")
 animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.773172
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g1dw6")

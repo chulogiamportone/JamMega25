@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkdmbgqmmbhut"]
+[gd_scene load_steps=7 format=3 uid="uid://bkdmbgqmmbhut"]
 
 [ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_xhb1m"]
+[ext_resource type="Texture2D" uid="uid://bai8gb5ag7yfq" path="res://art_test/SpritesMEGAJAMM/dead.png" id="2_k0ul0"]
+[ext_resource type="Shader" uid="uid://70448rx28xc8" path="res://water_distorsion/dark.gdshader" id="2_ljmpb"]
 
 [sub_resource type="Theme" id="Theme_k0ul0"]
 default_font = ExtResource("1_xhb1m")
 
 [sub_resource type="Theme" id="Theme_ljmpb"]
 default_font = ExtResource("1_xhb1m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbucd"]
+shader = ExtResource("2_ljmpb")
+shader_parameter/darkness = 0.5
+shader_parameter/vignette_strength = 1.0
+shader_parameter/vignette_size = 0.6
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -25,31 +33,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1880.0
-offset_top = 520.0
-offset_bottom = -520.0
-grow_horizontal = 0
-grow_vertical = 2
-
 [node name="MenuButton" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1855.0
-offset_bottom = -1014.0
+offset_left = 368.0
+offset_top = 453.0
+offset_right = -1487.0
+offset_bottom = -575.0
 
 [node name="Restart" type="Button" parent="MenuButton"]
 layout_mode = 2
 theme = SubResource("Theme_k0ul0")
+theme_override_font_sizes/font_size = 100
 text = "Restart"
 
 [node name="Quit" type="Button" parent="MenuButton"]
 layout_mode = 2
 theme = SubResource("Theme_ljmpb")
+theme_override_font_sizes/font_size = 100
 text = "Quit"
+
+[node name="Dead" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kbucd")
+position = Vector2(1310, 542)
+scale = Vector2(0.467773, 0.467773)
+texture = ExtResource("2_k0ul0")

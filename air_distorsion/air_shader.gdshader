@@ -30,12 +30,12 @@ float random(vec2 st) {
 float noise(vec2 st) {
 	vec2 i = floor(st);
 	vec2 f = fract(st);
-	
+
 	float a = random(i);
 	float b = random(i + vec2(1.0, 0.0));
 	float c = random(i + vec2(0.0, 1.0));
 	float d = random(i + vec2(1.0, 1.0));
-	
+
 	vec2 u = f*f*(3.0-2.0*f);
 	return mix(a, b, u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
 }
@@ -68,31 +68,31 @@ float wind_gusts(vec2 uv, float t) {
 	float angle = atan(wind_direction.y, wind_direction.x);
 	vec2 dir = vec2(cos(angle), sin(angle));
 	vec2 moved = uv*gust_scale + dir*t*wind_speed;
-	
+
 	float n = noise(moved);
 	//# franjas definidas con curva suave
 	float gust = pow(sin(n*3.14159), gust_sharpness);
-	
+
 	return gust;
 }
 
 void fragment(){
 	vec2 uv = SCREEN_UV;
 	float t = TIME;
-	
+
 	//# Color original con distorsión suave
 	vec2 d_uv = uv + wind_distortion(uv, t);
 	vec4 screen_color = texture(screen_texture, d_uv);
-	
+
 	//# Partículas
 	float p = wind_particles(uv, t);
 	vec3 dust_color = vec3(0.9,0.9,0.85);
 	screen_color.rgb = mix(screen_color.rgb, dust_color, p * particle_opacity * wind_strength);
-	
+
 	//# Ráfagas visibles (overlay)
 	float g = wind_gusts(uv, t);
 	vec3 gust_color = vec3(0.8,0.9,1.0); //# azul-blanco leve
 	screen_color.rgb = mix(screen_color.rgb, gust_color, g * gust_opacity);
-	
+
 	COLOR = screen_color;
 }

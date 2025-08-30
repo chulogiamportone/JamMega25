@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float darkness : hint_range(0.0, 1.0) = 0.5;
-uniform float vignette_strength : hint_range(0.0, 2.0) = 1.0;
+uniform float vignette_strength : hint_range(0.0, 5.0) = 1.0;
 uniform float vignette_size : hint_range(0.1, 1.0) = 0.6;
 uniform sampler2D screen_texture : hint_screen_texture;
 void fragment() {

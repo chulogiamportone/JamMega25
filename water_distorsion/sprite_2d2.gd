@@ -9,9 +9,6 @@ var shader_material: ShaderMaterial
 var is_cut: bool = false
 var timer: Timer
 
-
-
-
 func _ready() -> void:
 	# Crear el material con shader
 	shader_material = material as ShaderMaterial
