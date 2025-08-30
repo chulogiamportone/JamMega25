@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://b2c6q8uqsxoii"]
+[gd_scene load_steps=11 format=4 uid="uid://b2c6q8uqsxoii"]
 
 [ext_resource type="Texture2D" uid="uid://buo3pvvqrwnyd" path="res://art_test/apocalyptic_tileset_16x16.png" id="1_an0ml"]
+[ext_resource type="Texture2D" uid="uid://b10lay1gxh1q1" path="res://art_test/primer fondo.svg" id="1_isg3t"]
 [ext_resource type="PackedScene" uid="uid://du0rgw56t2d45" path="res://enemy/water_enemy_01.tscn" id="3_kojvl"]
 [ext_resource type="PackedScene" uid="uid://cwlrui1trn4qo" path="res://air_distorsion/air_shader.tscn" id="4_cn8vm"]
 [ext_resource type="PackedScene" uid="uid://dbifjdc5k4gag" path="res://player/player.tscn" id="4_qq863"]
-[ext_resource type="PackedScene" uid="uid://m35e6fshgwnn" path="res://water_distorsion/control.tscn" id="5_kojvl"]
+[ext_resource type="Script" uid="uid://bba46d7qt7xdf" path="res://water_distorsion/camera_2d.gd" id="7_an0ml"]
 [ext_resource type="Shader" uid="uid://70448rx28xc8" path="res://water_distorsion/dark.gdshader" id="8_isg3t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isg3t"]
@@ -86,8 +87,8 @@ sources/1 = SubResource("TileSetAtlasSource_isg3t")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tepl"]
 shader = ExtResource("8_isg3t")
 shader_parameter/darkness = 0.2
-shader_parameter/vignette_strength = 1.5
-shader_parameter/vignette_size = 0.18
+shader_parameter/vignette_strength = 2.0
+shader_parameter/vignette_size = 0.5
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -97,29 +98,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_isg3t")
+
 [node name="Map" type="TileMapLayer" parent="."]
-position = Vector2(38, 83)
+position = Vector2(804, 201)
 tile_map_data = PackedByteArray("AAD8/wQAAQAAAAcAAAD9/wQAAQAAAAcAAAD+/wQAAQAAAAcAAAD//wQAAQAAAAcAAAAAAAQAAQAAAAcAAAABAAQAAQAAAAcAAAACAAQAAQAAAAcAAAADAAQAAQAAAAcAAAAEAAQAAQAAAAcAAAAFAAQAAQAAAAcAAAAGAAQAAQAAAAcAAAAHAAQAAQAAAAcAAAAIAAQAAQAAAAcAAAAJAAQAAQAAAAcAAAA=")
 tile_set = SubResource("TileSet_3tepl")
 
-[node name="Control" parent="." instance=ExtResource("5_kojvl")]
-layout_mode = 1
-offset_left = 206.0
-offset_top = 93.0
-offset_right = 206.0
-offset_bottom = 93.0
-
 [node name="WaterEnemy01" parent="." instance=ExtResource("3_kojvl")]
-position = Vector2(408, 421)
+position = Vector2(1174, 539)
+
+[node name="WaterEnemy02" parent="." instance=ExtResource("3_kojvl")]
+position = Vector2(1421, 539)
+
+[node name="WaterEnemy03" parent="." instance=ExtResource("3_kojvl")]
+position = Vector2(637, 531)
 
 [node name="Player" parent="." instance=ExtResource("4_qq863")]
-position = Vector2(187, 427)
+position = Vector2(953, 545)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 127
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_3tepl")
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,13 +138,14 @@ grow_vertical = 2
 [node name="Shader" type="CanvasLayer" parent="."]
 layer = 128
 
-[node name="Button" type="Button" parent="Shader"]
-offset_left = 35.0
-offset_top = 19.0
-offset_right = 185.0
-offset_bottom = 50.0
-text = "CORTAR ENEMIGO"
-
 [node name="AirShader" parent="Shader" instance=ExtResource("4_cn8vm")]
 visible = false
 mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(955, 550)
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 10080
+script = ExtResource("7_an0ml")
