@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuoy2ol0e2r6g"]
+
+[ext_resource type="Script" uid="uid://bpw61mywj8oer" path="res://nota/nota_in_map.gd" id="1_q7en2"]
+[ext_resource type="Texture2D" uid="uid://daouudqtcncv2" path="res://art_test/SpritesMEGAJAMM/tabla.png" id="2_wlsvn"]
+[ext_resource type="Texture2D" uid="uid://bc5st10kpfii5" path="res://menu/keyboard/Tiles (White)/tile_0087.png" id="3_adppp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jb7i"]
+size = Vector2(3320, 2630)
+
+[node name="NotaInMap" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q7en2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wlsvn")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(3.8147e-05, -894.999)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_8jb7i")
+
+[node name="Button" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -149)
+scale = Vector2(2, 2)
+texture = ExtResource("3_adppp")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

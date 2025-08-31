@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cgk87myhkftnq"]
+
+[ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_ebmdp"]
+
+[resource]
+default_font = ExtResource("1_ebmdp")

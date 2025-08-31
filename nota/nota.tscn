@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwqpa58uvtd8f"]
+
+[ext_resource type="Script" uid="uid://clixkupd25fcn" path="res://nota/nota.gd" id="1_apxoq"]
+[ext_resource type="Texture2D" uid="uid://daouudqtcncv2" path="res://art_test/SpritesMEGAJAMM/tabla.png" id="2_v570h"]
+[ext_resource type="Theme" uid="uid://cgk87myhkftnq" path="res://menu/init_menu/menu.tres" id="3_585sg"]
+
+[node name="Nota" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_apxoq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 252.0
+offset_top = -77.0
+offset_right = 1632.0
+offset_bottom = 1158.0
+texture = ExtResource("2_v570h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00392157, 0.00392157, 0.00392157, 0.909804)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 44.0
+offset_right = 1496.0
+offset_bottom = 1013.0
+theme = ExtResource("3_585sg")
+theme_override_font_sizes/font_size = 50
+text = "La Profecía de los Tres Estados
+
+En el amanecer de lo que fue y en el ocaso de lo que 
+será, tres fuerzas se alzarán sobre la última esencia.
+Una surgirá de las estrellas, portadora de memoria 
+y olvido, oculta tras un velo humano.
+Otra, de la forja sin alma, alimentada por frío 
+ardiente y por el hambre de lo eterno.
+Y la tercera, de la pureza sin mancha, nacida del 
+agua misma, último eco de lo vivo.
+
+Entre ellas habrá guerra, y de su guerra nacerá silencio 
+o renacerá el aliento.Mas no está escrito si el portador 
+devolverá el río a la tierra o lo arrancará hacia el vacío.
+Sólo uno podrá descifrar este signo, 
+y en su elección estará el destino:
+salvar lo perdido o 
+sellar la condena de todo lo creado."
+horizontal_alignment = 1
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1810.0
+offset_top = 22.0
+offset_right = 1877.0
+offset_bottom = 81.0
+theme = ExtResource("3_585sg")
+theme_override_font_sizes/font_size = 50
+text = "X"
+
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

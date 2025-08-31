@@ -9,13 +9,11 @@ var shader_material: ShaderMaterial
 var is_cut: bool = false
 var timer: Timer
 
-
-
-
 func _ready() -> void:
 	# Crear el material con shader
 	shader_material = material as ShaderMaterial
-	
+	shader_material = shader_material.duplicate()
+	material = shader_material
 	# Configurar timer
 	timer = Timer.new()
 	timer.one_shot = true
@@ -54,3 +52,7 @@ func _on_reconstruct() -> void:
 		shader_material.set_shader_parameter("cut_progress", 0.0)
 		print("¡Enemigo reconstruido! ✨")
 	)
+
+
+
+	

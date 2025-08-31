@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbifjdc5k4gag"]
+[gd_scene load_steps=21 format=3 uid="uid://dbifjdc5k4gag"]
 
 [ext_resource type="Script" uid="uid://c24ngaugu3cga" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cscqlj02pmbe8" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA1.png" id="2_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://bueguuqld3lbw" path="res://art_test/SpritesMEGAJAMM/HozEsponja.png" id="2_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://b5faokfdiup5p" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA2.png" id="3_yw30f"]
 [ext_resource type="Texture2D" uid="uid://crt8t7oes1dvi" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA3.png" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dbthakpkuu5d3" path="res://art_test/SpritesMEGAJAMM/PROTAGONISTA4.png" id="5_g6k8r"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kparq"]
-size = Vector2(16, 32)
+[ext_resource type="PackedScene" uid="uid://ctasii65klhch" path="res://progress_bar/progress_bar.tscn" id="7_rgyib"]
+[ext_resource type="Script" uid="uid://ddbu53nl2mwd1" path="res://progress_bar/progress_bar_player.gd" id="8_hg6s5"]
+[ext_resource type="Shader" uid="uid://bu1yq4vejyidj" path="res://water_distorsion/absorsion.gdshader" id="9_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://6lyenuwvqu7g" path="res://art_test/SpritesMEGAJAMM/AspiradoraCOSTADO.png" id="9_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://cb3ooe0vlky6l" path="res://art_test/SpritesMEGAJAMM/como.png" id="10_ebec5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nxt0l"]
 animations = [{
@@ -32,31 +35,154 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yllr7"]
+noise_type = 2
+seed = 7
+frequency = 0.0036
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kb6p2"]
+noise = SubResource("FastNoiseLite_yllr7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wodsf"]
+shader = ExtResource("9_2ieo8")
+shader_parameter/absorption_radius = 0.965
+shader_parameter/absorption_center = Vector2(0, 0.5)
+shader_parameter/absorption_strength = 0.965
+shader_parameter/water_distortion = 0.1
+shader_parameter/time_speed = 2.669
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kb6p2")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
-size = Vector2(33, 11.75)
+size = Vector2(47.5, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kparq"]
+size = Vector2(23, 62)
+
+[sub_resource type="Animation" id="Animation_hg6s5"]
+resource_name = "hoz"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlPlayer/HozEsponja:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.436332, 0.872665, 1.309, 1.74533, 2.35619, 0.436332]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayer/HozEsponja:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(45, 38), Vector2(50, 47), Vector2(50, 57), Vector2(45, 62), Vector2(45, 68), Vector2(35, 38)]
+}
+
+[sub_resource type="Animation" id="Animation_8t03j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlPlayer/HozEsponja:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.436332]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayer/HozEsponja:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(35, 38)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ieo8"]
+_data = {
+&"RESET": SubResource("Animation_8t03j"),
+&"hoz": SubResource("Animation_hg6s5")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_kparq")
-debug_color = Color(0.818396, 0.375739, 0.404485, 0.42)
+[node name="ControlPlayer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -11.0
+offset_top = -49.0
+offset_right = 12.0
+offset_bottom = 43.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="HozEsponja" type="Sprite2D" parent="ControlPlayer"]
+position = Vector2(35, 38)
+rotation = 0.436332
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_hg6s5")
+
+[node name="ProgressBar" parent="ControlPlayer" instance=ExtResource("7_rgyib")]
+layout_mode = 0
+offset_left = -25.0
+offset_top = 31.0
+offset_right = 231.0
+offset_bottom = 287.0
+scale = Vector2(0.13, 0.13)
+script = ExtResource("8_hg6s5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ControlPlayer"]
+position = Vector2(14, 49)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_nxt0l")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.773172
+frame_progress = 0.778816
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Como" type="Sprite2D" parent="ControlPlayer"]
+visible = false
+material = SubResource("ShaderMaterial_wodsf")
+position = Vector2(43, 59)
+rotation = 1.48353
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_ebec5")
+
+[node name="AspiradoraCostado" type="Sprite2D" parent="ControlPlayer"]
+position = Vector2(12, 50)
+rotation = 1.48353
+scale = Vector2(0.3, 0.334)
+texture = ExtResource("9_hg6s5")
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlPlayer"]
+visible = false
+position = Vector2(46, 48)
 texture = ExtResource("2_g1dw6")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="ControlPlayer"]
+position = Vector2(38, 47)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(25.5, -0.125)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ControlPlayer/Area2D"]
+position = Vector2(11.25, 2)
 shape = SubResource("RectangleShape2D_rkbax")
-debug_color = Color(0.916389, 0.278261, 0.18966, 0.42)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kparq")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -15.0
@@ -64,5 +190,10 @@ offset_top = -70.0
 offset_right = 25.0
 offset_bottom = -47.0
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2ieo8")
+}
+
+[connection signal="body_entered" from="ControlPlayer/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="ControlPlayer/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqnqcjxdwatno"]
+[gd_scene load_steps=9 format=3 uid="uid://bqnqcjxdwatno"]
 
 [ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_jopti"]
+[ext_resource type="Texture2D" uid="uid://b10lay1gxh1q1" path="res://art_test/primer fondo.svg" id="1_ltw84"]
+[ext_resource type="Script" uid="uid://bm33286pemuwa" path="res://menu/introduccion/introduccion.gd" id="1_ou12f"]
+[ext_resource type="Theme" uid="uid://cgk87myhkftnq" path="res://menu/init_menu/menu.tres" id="2_rqpjh"]
+[ext_resource type="PackedScene" uid="uid://cegkiocvaydkk" path="res://menu/tutorial/tutorial_acciones.tscn" id="4_ou12f"]
+[ext_resource type="PackedScene" uid="uid://jg3ijjmfv5ax" path="res://menu/tutorial/tutorial_movimiento.tscn" id="5_iivcg"]
+[ext_resource type="Texture2D" uid="uid://cfsumbaahetw0" path="res://art_test/logos.png" id="7_iivcg"]
 
 [sub_resource type="Theme" id="Theme_rqpjh"]
 default_font = ExtResource("1_jopti")
@@ -12,6 +18,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ou12f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ltw84")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -20,10 +33,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.933333)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 34.0
+offset_top = 133.0
+offset_right = 1884.0
+offset_bottom = 732.0
 theme = SubResource("Theme_rqpjh")
+theme_override_font_sizes/font_size = 50
+text = "El planeta yace en ruinas, sus ríos son grietas vacías, 
+sus océanos son desiertos interminables 
+y cada gota de agua es más valiosa que la vida misma. 
+Tres fuerzas caminan en este páramo seco, herederos de antiguas creencias, 
+las máquinas errantes y los últimos espíritus.
+Atados a un mismo recurso que decide quién sobrevive y quién perece.
+En esta guerra sin tregua no hay vencedores, solo sed. El aire se llena de polvo, 
+las ciudades se pudren bajo la sombra del pasado, 
+y lo único que persiste es la lucha por el agua. Pero entre el caos, 
+alguien camina en silencio, cargando un destino que tarde o temprano deberá enfrentar."
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1502.0
+offset_top = 918.0
+offset_right = 1802.0
+offset_bottom = 1002.0
+theme = ExtResource("2_rqpjh")
+theme_override_font_sizes/font_size = 50
+text = "CONTINUAR"
+
+[node name="TutorialAcciones" parent="." instance=ExtResource("4_ou12f")]
+layout_mode = 1
+offset_left = 733.0
+offset_top = 880.0
+offset_right = 733.0
+offset_bottom = 880.0
+scale = Vector2(4, 4)
+
+[node name="Tutorial_movimiento" parent="." instance=ExtResource("5_iivcg")]
+layout_mode = 1
+offset_left = 220.0
+offset_top = 882.0
+offset_right = 91.36
+offset_bottom = 842.04
+scale = Vector2(4, 4)
+
+[node name="Logos" type="Sprite2D" parent="."]
+position = Vector2(950, 779)
+scale = Vector2(0.410156, 0.410156)
+texture = ExtResource("7_iivcg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

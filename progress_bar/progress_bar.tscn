@@ -1,0 +1,44 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctasii65klhch"]
+
+[ext_resource type="Texture2D" uid="uid://b7bymmk7ycwhx" path="res://art_test/SpritesMEGAJAMM/Pez2AcuarioAJUSTADO1.png" id="1_fgoc3"]
+[ext_resource type="Texture2D" uid="uid://bu2g00s2occjr" path="res://art_test/SpritesMEGAJAMM/Pez2AcuarioAJUSTADO2.png" id="2_as2xc"]
+[ext_resource type="Texture2D" uid="uid://cduode7qfb7cs" path="res://art_test/SpritesMEGAJAMM/Pez2AcuarioAJUSTADO3.png" id="3_rb8ud"]
+[ext_resource type="Texture2D" uid="uid://dxpnafc0mufkg" path="res://art_test/SpritesMEGAJAMM/Pez2AcuarioAJUSTADO4.png" id="4_r8w4y"]
+[ext_resource type="Texture2D" uid="uid://d2ddhewcoqhli" path="res://art_test/SpritesMEGAJAMM/Pez3AcuarioAJUSTADO1.png" id="5_ykxkc"]
+[ext_resource type="Texture2D" uid="uid://446a8h5nu0a1" path="res://art_test/SpritesMEGAJAMM/Pez3AcuarioAJUSTADO2.png" id="6_1c76e"]
+[ext_resource type="Texture2D" uid="uid://cgq00v71m0kjk" path="res://art_test/SpritesMEGAJAMM/Pez3AcuarioAJUSTADO3.png" id="7_j6gs4"]
+[ext_resource type="Texture2D" uid="uid://batdr8d6lkax8" path="res://art_test/SpritesMEGAJAMM/Pez3AcuarioAJUSTADO4.png" id="8_prewk"]
+[ext_resource type="Script" uid="uid://knj0k4ba5k2v" path="res://progress_bar/progress_bar.gd" id="9_3g2m1"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7c3qt"]
+frames = 4
+speed_scale = 0.5
+frame_0/texture = ExtResource("1_fgoc3")
+frame_1/texture = ExtResource("2_as2xc")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_rb8ud")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_r8w4y")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ry5gj"]
+frames = 4
+speed_scale = 0.5
+frame_0/texture = ExtResource("5_ykxkc")
+frame_1/texture = ExtResource("6_1c76e")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("7_j6gs4")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("8_prewk")
+frame_3/duration = 1.0
+
+[node name="ProgressBar" type="TextureProgressBar"]
+offset_left = 17.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 275.0
+value = 80.0
+fill_mode = 3
+texture_over = SubResource("AnimatedTexture_7c3qt")
+texture_progress = SubResource("AnimatedTexture_ry5gj")
+script = ExtResource("9_3g2m1")

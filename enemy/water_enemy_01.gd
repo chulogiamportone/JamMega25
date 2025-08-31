@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var hit_to_life:int=5
-@onready var sprite_2d: WaterEnemy2 = $Sprite2D
+@onready var sprite_2d: WaterEnemy = $Sprite2D
 
 # Velocidad de movimiento
 @export var speed: float = 800.0
