@@ -1,0 +1,167 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqc011ser1xhp"]
+
+[ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_j0t7f"]
+[ext_resource type="Texture2D" uid="uid://dgw4emjgw318u" path="res://art_test/SpritesMEGAJAMM/runa.png" id="1_pbjm4"]
+[ext_resource type="Script" uid="uid://74sd0uiifscj" path="res://menu/init_menu/menu.gd" id="1_svuvw"]
+[ext_resource type="Shader" uid="uid://70448rx28xc8" path="res://main/dark.gdshader" id="3_svuvw"]
+[ext_resource type="Theme" uid="uid://cgk87myhkftnq" path="res://menu/init_menu/menu.tres" id="4_bgcbo"]
+[ext_resource type="Shader" uid="uid://30774610ye7" path="res://menu/init_menu/light.gdshader" id="4_juveg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_juveg"]
+shader = ExtResource("4_juveg")
+shader_parameter/glow_strength = 1.5
+shader_parameter/glow_size = 2.0
+shader_parameter/glow_color = Vector4(1, 1, 0.8, 1)
+shader_parameter/use_sprite_color = true
+
+[sub_resource type="Theme" id="Theme_6nwqt"]
+default_font = ExtResource("1_j0t7f")
+
+[sub_resource type="Theme" id="Theme_pbjm4"]
+default_font = ExtResource("1_j0t7f")
+
+[sub_resource type="Animation" id="Animation_s4hbh"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Img:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(896, -221), Vector2(896, -226), Vector2(896, -231), Vector2(896, -226), Vector2(896, -221)]
+}
+
+[sub_resource type="Animation" id="Animation_v6yed"]
+resource_name = "texture_move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Img:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(821, -214), Vector2(821, -219), Vector2(821, -224), Vector2(821, -219), Vector2(821, -214)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6fswf"]
+_data = {
+&"RESET": SubResource("Animation_s4hbh"),
+&"texture_move": SubResource("Animation_v6yed")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bc54p"]
+shader = ExtResource("3_svuvw")
+shader_parameter/darkness = 0.21
+shader_parameter/vignette_strength = 0.75
+shader_parameter/vignette_size = 0.299
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_043lm"]
+
+[node name="InitScreen" type="Control"]
+modulate = Color(1, 1, 1, 0.733333)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svuvw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Img" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_juveg")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = -221.0
+offset_bottom = 235.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_pbjm4")
+
+[node name="MenuButton" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 364.0
+offset_top = 391.0
+offset_right = -1155.0
+offset_bottom = -291.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Start" type="Button" parent="MenuButton"]
+layout_mode = 2
+theme = ExtResource("4_bgcbo")
+theme_override_font_sizes/font_size = 100
+text = "START"
+
+[node name="Credit" type="Button" parent="MenuButton"]
+layout_mode = 2
+theme = SubResource("Theme_6nwqt")
+theme_override_font_sizes/font_size = 100
+text = "CREDITS"
+
+[node name="Quit" type="Button" parent="MenuButton"]
+layout_mode = 2
+theme = SubResource("Theme_pbjm4")
+theme_override_font_sizes/font_size = 100
+text = "QUIT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6fswf")
+}
+autoplay = "RESET"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_bc54p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_043lm")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_bc54p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 883.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_043lm")
+
+[connection signal="pressed" from="MenuButton/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuButton/Credit" to="." method="_on_credit_pressed"]
+[connection signal="pressed" from="MenuButton/Quit" to="." method="_on_quit_pressed"]

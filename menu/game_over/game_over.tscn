@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://br3onpcjd1bh1" path="res://menu/Born2bSportyV2.ttf" id="1_xhb1m"]
 [ext_resource type="Texture2D" uid="uid://bai8gb5ag7yfq" path="res://art_test/SpritesMEGAJAMM/dead.png" id="2_k0ul0"]
-[ext_resource type="Shader" uid="uid://70448rx28xc8" path="res://water_distorsion/dark.gdshader" id="2_ljmpb"]
+[ext_resource type="Shader" uid="uid://70448rx28xc8" path="res://main/dark.gdshader" id="2_ljmpb"]
 
 [sub_resource type="Theme" id="Theme_k0ul0"]
 default_font = ExtResource("1_xhb1m")

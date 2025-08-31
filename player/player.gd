@@ -8,10 +8,16 @@ const JETPACK_FORCE := -10000.0
 
 @export var DASH_TIME: float = 1.0
 @export_range(0, 1000) var water_tank: int=1000
-@onready var area_2d: Area2D = $Area2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var area_2d: Area2D = $ControlPlayer/Area2D
+
 #@onready var anim: AnimatedSprite2D = $AnimatedSprite2D   # si usas animaciones
 @onready var label: Label = $Label
+@onready var control_player: Control = $ControlPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var como: Sprite2D = $ControlPlayer/Como
+
 
 var can_dash := true
 var dash_cooldown := 0.5
@@ -19,6 +25,7 @@ var dash_timer := 0.0
 var is_dashing: bool = false
 var second_jump:bool=false
 var body_in_area:CharacterBody2D=null
+
 
 func _physics_process(delta: float) -> void:
 	label.text=str(water_tank)
@@ -43,14 +50,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_jetpack"):
 		water_tank-=1
 		velocity.y = JETPACK_FORCE * delta
-		
+
+			
 
 	# Movimiento horizontal
 	var direction_x := Input.get_axis("ui_left", "ui_right")
 	if direction_x != 0:
 		velocity.x = direction_x * SPEED
-		sprite_2d.flip_h = direction_x < 0
-		area_2d.scale.x=direction_x
+		control_player.scale.x=direction_x
+		if direction_x>0:
+			collision_shape_2d.position.x=0
+		else:
+			collision_shape_2d.position.x=-22
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
@@ -76,18 +87,18 @@ func _physics_process(delta: float) -> void:
 
 	## Ataques
 	if Input.is_action_just_pressed("ui_attack"):
+		animation_player.play("hoz")
 		## anim.play("palo")
 		if body_in_area!=null:
 			body_in_area.hit_to_life-=1
 			body_in_area.sprite_2d.apply_cut()
 	if Input.is_action_pressed("ui_aspirar"):
-		if body_in_area!=null:
-			print(body_in_area.hit_to_life)
 		## anim.play("absorcion")
 		if body_in_area!=null and body_in_area.hit_to_life<=2:
 			water_tank+=500
 			body_in_area.queue_free()
 			body_in_area=null
+	como.visible=Input.is_action_pressed("ui_aspirar")
 	move_and_slide()
 
 func _start_dash() -> void:
